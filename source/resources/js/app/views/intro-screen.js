@@ -21,7 +21,9 @@ export default Backbone.View.extend({
     events: {
         'click .recent-files [data-id]': 'loadFromRecent',
         'click .archive-open': 'toggleSubmenu',
-        'click .archive-new': 'toggleSubmenu'
+        'click .archive-open-file': 'openArchive',
+        'click .archive-new': 'toggleSubmenu',
+        'click .archive-new-file': 'newArchive'
     },
 
     initialize: function () {
