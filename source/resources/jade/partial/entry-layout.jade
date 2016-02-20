@@ -6,6 +6,8 @@ html
 		block styles
 			link(type="text/css", href="css/style.css", rel="stylesheet")
 		block scripts
+			script.
+				const appVersion = "#{version}";
 			if !package
 				script(src="js/jspm_packages/system.js")
 				script(src="js/config.js")

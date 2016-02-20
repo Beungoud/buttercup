@@ -1,15 +1,15 @@
 "use strict";
 
-var electron        = require('electron'),
+var EventsManager   = require('./events.js')(),
+    windowManager   = require('./classes/WindowManager.js').getSharedInstance(),
+    menuTemplate    = require('./config/menu.js'),
+    Platform        = require("./lib/platform"),
+    electron        = require('electron'),
     app             = electron.app,
     BrowserWindow   = electron.BrowserWindow,
     Menu            = electron.Menu,
     ipc             = electron.ipcMain,
-    path            = require('path'),
-    EventsManager   = require('./events.js')(),
-    windowManager   = require('./WindowManager.js').getSharedInstance(),
-    menuTemplate    = require('./config/menu.js'),
-    Platform        = require("./lib/platform");
+    path            = require('path');
 
 // Global reference of the window object
 global.Buttercup = {

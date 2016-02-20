@@ -14,11 +14,19 @@ Buttercup.Events = _.extend({}, Backbone.Events);
 // Hide loading image
 $("#loading").hide();
 
-// Decide what to load
-if (importScreen === true) {
-    Buttercup.IntroScreen = new IntroScreen();
-} else {
-    Buttercup.Layout = new Layout();
+// Load the correct window
+const id = window.windowID || "main";
+
+switch (id) {
+    case "intro":
+        Buttercup.IntroScreen = new IntroScreen();
+        break;
+    case "main":
+        Buttercup.Layout = new Layout();
+        break;
+    case "cloud":
+        console.log("DAMN");
+        break;
 }
 
 // Start histroy process

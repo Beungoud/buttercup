@@ -1,13 +1,13 @@
 (function (module) {
     'use strict';
 
-    var Manager         = require('./manager'),
-        Workspace       = require('./workspace'),
+    var Manager         = require('./classes/Manager'),
+        Workspace       = require('./classes/Workspace'),
+        windowManager   = require('./classes/WindowManager.js').getSharedInstance(),
         path            = require('path'),
         electron        = require('electron'),
         BrowserWindow   = electron.BrowserWindow,
-        ipc             = electron.ipcMain,
-        windowManager   = require('./WindowManager.js').getSharedInstance();
+        ipc             = electron.ipcMain;
 
     var manager = new Manager();
 
@@ -59,6 +59,24 @@
         });
     }
 
+    function showCloudExplorer() {
+        // Create the browser window.
+        var cloudWindow = new BrowserWindow({
+            width: 700,
+            height: 500,
+            'title-bar-style': 'hidden'
+        });
+        cloudWindow.loadURL(Buttercup.config.publicDir + '/cloud.html');
+        cloudWindow.show();
+
+        // Emitted when the window will close
+        cloudWindow.on('close', function() {
+            windowManager.deregister(cloudWindow);
+        });
+
+        windowManager.register("cloud", cloudWindow);
+    }
+
     module.exports = function () {
         // Connect to workspace
         ipc.on('workspace.connect', function(event, arg) {
@@ -71,6 +89,10 @@
             Workspace.save(arg.path, arg.password).then(function() {
                 loadWorkspace(arg.path, arg.password);
             });
+        });
+
+        ipc.on('workspace.cloud', function() {
+            showCloudExplorer();
         });
 
         // Get all groups

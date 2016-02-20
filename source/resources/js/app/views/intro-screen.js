@@ -23,7 +23,8 @@ export default Backbone.View.extend({
         'click .archive-open': 'toggleSubmenu',
         'click .archive-open-file': 'openArchive',
         'click .archive-new': 'toggleSubmenu',
-        'click .archive-new-file': 'newArchive'
+        'click .archive-new-file': 'newArchive',
+        'click .archive-new-cloud': 'newArchiveCloud'
     },
 
     initialize: function () {
@@ -134,6 +135,11 @@ export default Backbone.View.extend({
             var archive = this.getArchive(filename);
             this.togglePasswordForm(archive.id, true);
         }
+    },
+
+    newArchiveCloud: function(e) {
+        e.preventDefault();
+        ipc.send("workspace.cloud");
     },
 
     toggleSubmenu: function(e) {

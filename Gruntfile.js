@@ -166,7 +166,8 @@ module.exports = function(grunt) {
             app: {
                 files: {
                     'source/public/index.html': ['source/resources/jade/index.jade'],
-                    'source/public/intro.html': ['source/resources/jade/intro.jade']
+                    'source/public/intro.html': ['source/resources/jade/intro.jade'],
+                    'source/public/cloud.html': ['source/resources/jade/cloud.jade']
                 },
                 options: {
                     data: {
