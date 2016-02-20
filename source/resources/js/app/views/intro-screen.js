@@ -20,8 +20,8 @@ export default Backbone.View.extend({
 
     events: {
         'click .recent-files [data-id]': 'loadFromRecent',
-        'click .archive-open': 'openArchive',
-        'click .archive-new': 'newArchive'
+        'click .archive-open': 'toggleSubmenu',
+        'click .archive-new': 'toggleSubmenu'
     },
 
     initialize: function () {
@@ -132,5 +132,16 @@ export default Backbone.View.extend({
             var archive = this.getArchive(filename);
             this.togglePasswordForm(archive.id, true);
         }
+    },
+
+    toggleSubmenu: function(e) {
+        e.preventDefault();
+
+        let $link = this.$(e.currentTarget),
+            $sub = $link.next(".sub-menu"),
+            $otherSubs = this.$(".sub-menu").filter((i, item) => !$(item).is($sub));
+
+        $otherSubs.slideUp(100);    // Slide up open sub-menus
+        $sub.slideToggle(200);      // Toggle slide current sub-menu
     }
 });

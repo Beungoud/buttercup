@@ -31,4 +31,13 @@
         }
     }
 
+    .sub-menu {
+        display: none;
+        > li {
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+
 }

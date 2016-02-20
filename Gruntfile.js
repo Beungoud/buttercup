@@ -279,8 +279,12 @@ module.exports = function(grunt) {
                 spawn: false
             },
             assets: {
-                files: ['source/resources/js/**/*.*', 'source/resources/img/**/*.*'],
+                files: ['source/resources/js/**/*.*', 'source/resources/img/**/*.*', '!source/resources/img/icons'],
                 tasks: ['sync']
+            },
+            icons: {
+                files: ['source/resources/img/icons/*.svg'],
+                tasks: ['svg_sprite']
             },
             styles: {
                 files: ['source/resources/css/**/*.scss'],
