@@ -4,6 +4,7 @@
 import _ from 'underscore';
 import Backbone from 'backbone';
 import IntroScreen from 'app/views/intro-screen';
+import CloudRouter from 'app/views/cloud/router';
 import Layout from 'app/views/layout';
 import 'app/helpers';
 
@@ -25,7 +26,7 @@ switch (id) {
         Buttercup.Layout = new Layout();
         break;
     case "cloud":
-        console.log("DAMN");
+        window.Cloud = new CloudRouter();
         break;
 }
 
