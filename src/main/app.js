@@ -5,6 +5,7 @@ import pkg from '../../package.json';
 import menuTemplate from './config/menu';
 import WindowManager from './lib/window-manager';
 import createRPC from './lib/rpc';
+import AutoUpdater from './lib/auto-updater';
 import './lib/buttercup';
 
 const windowManager = WindowManager.getSharedInstance();
@@ -58,6 +59,7 @@ windowManager.setBuildProcedure('main', callback => {
   });
 
   rpc.on('init', () => {
+    AutoUpdater(win);
     if (callback) {
       callback(win, rpc);
     }

@@ -38,6 +38,10 @@ rpc.on('copy-current-password', () => {
   }
 });
 
+rpc.on('update-available', a => {
+  document.body.innerHTML = JSON.stringify(a);
+});
+
 render(
   <Provider store={store}>
     <WorkspaceContainer/>
