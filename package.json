@@ -188,7 +188,8 @@
     "envs": [
       "node",
       "browser",
-      "mocha"
+      "mocha",
+      "chai"
     ],
     "ignores": [
       "**/Gruntfile.js",
